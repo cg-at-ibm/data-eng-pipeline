@@ -30,22 +30,8 @@ lazy_load_plugins = False
 ### 3. Start airflow server (if it overwrites .cfg file then you may have to rewrite it again)
 airflow standalone
 
-### 4. Create connection settings
-Open http://localhost:8080 on Google Chrome, then go to "Admin > Connections" menu. From there, create the following connections:
-    AWS credentials:
-        Conn Id: aws_credentials
-        Login: Your AWS ACCESS KEY
-        Password: Your AWS SECRET ACCESS KEY
-    Redshift connection
-        Conn Id: redshift
-        Conn Type: Postgres
-        Host: Endpoint of your Redshift cluster
-        Schema: dev
-        Login: awsuser
-        Password: Password for user when launching your Redshift cluster.
-        Port: 5439
 
-### 5. Create connection settings
+### 4. Create connection settings
 Open http://localhost:8080 on Google Chrome, then go to "Admin > Connections" menu. From there, create the following connections:
 
     AWS credentials:
@@ -61,6 +47,9 @@ Open http://localhost:8080 on Google Chrome, then go to "Admin > Connections" me
         Password: Password for user when launching your Redshift cluster.
         Port: 5439
 
+
+### 5. Run data_pipeline dag
+Run data_pipeline dag in airflow
 
 ### File structure
 
