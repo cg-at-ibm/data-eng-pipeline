@@ -1,7 +1,7 @@
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
-from plugins.helpers import SqlQueries
+from helpers import SqlQueries
 
 class CreateTablesOperator(BaseOperator):
     ui_color = '#355681'
