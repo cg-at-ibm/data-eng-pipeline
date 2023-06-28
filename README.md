@@ -5,7 +5,7 @@ This repository contains an airflow workspace that is used to execute a data pip
 ### File structure
 
 ```plaintext
-.                   # Home directory. Also set PYTHONPATH to this directory so modules are loaded properly.
+.                   # Home directory. Also set PYTHONPATH to this directory so plugins can load properly and don't appear broken.
 ├── airflow         # AIRFLOW_HOME (use this directory for airflow installation.)
 ├── dags            # Contains the DAG for running the pipeline
 ├── plugins         # Plugin directory
