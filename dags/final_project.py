@@ -5,7 +5,7 @@ import pendulum
 from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.postgres_operator import PostgresOperator
-from operators import CreateTablesOperator, StageToRedshiftOperator, LoadFactOperator, LoadDimensionOperator, DataQualityOperator
+from operators import StageToRedshiftOperator, LoadFactOperator, LoadDimensionOperator, DataQualityOperator
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 
 s3_bucket = 'udacity-dend'
@@ -35,20 +35,13 @@ dq_checks=[
 dag = DAG('data_pipeline',
     default_args=default_args,
     description='Load and transform data in Redshift with Airflow',
-    schedule_interval='0 0 * * *',
+    schedule_interval='0 * * * *',
     start_date=datetime(2023, 6, 28)   
 )
 
 #Starting dummy operator
 start_operator = DummyOperator(task_id='Begin_execution', dag = dag)
 
-#Create table operator
-create_tables_in_redshift = CreateTablesOperator(
-    task_id='Create_tables',
-    redshift_conn_id = "redshift",
-    tables = ["staging_events_table", "staging_songs_table", "songplays_table", "users_table", "songs_table", "artists_table", "time_table"],
-    dag=dag
-)
 
 #Stage events operator 
 stage_events_to_redshift = StageToRedshiftOperator(
@@ -127,7 +120,7 @@ run_quality_checks = DataQualityOperator(
 end_operator = DummyOperator(task_id='Finish_execution', dag = dag)
 
 #Defining the directionality of the operators
-start_operator >> create_tables_in_redshift >> [stage_events_to_redshift, stage_songs_to_redshift] 
+start_operator  >> [stage_events_to_redshift, stage_songs_to_redshift] 
 [stage_events_to_redshift, stage_songs_to_redshift] >> load_songplays_table 
 [load_time_dimension_table, load_song_dimension_table, load_user_dimension_table, load_artist_dimension_table] << load_songplays_table
 run_quality_checks << [load_song_dimension_table, load_user_dimension_table, load_artist_dimension_table, load_time_dimension_table]
