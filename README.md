@@ -20,19 +20,17 @@ pip install apache-airflow-providers-postgres
 
 ### 2. Modify the airflow/airflow.cfg file
 load_examples = False
+
 dags_folder = <some path>/<home>/dags
+
 plugins_folder = <some path>/<home>/plugins
+
 lazy_load_plugins = False
 
-### 3. Set pythonpath to home (IMPORTANT, PLUGINS MAY NOT LOAD WITHOUT THIS)
-export PYTHONPATH="$PYTHONPATH:$(pwd)"
-echo 'export PYTHONPATH="$PYTHONPATH:$(pwd)"' >> ~/.bashrc
-source ~/.bashrc
-
-### 4. Start airflow server (if it overwrites .cfg file then you may have to rewrite it again)
+### 3. Start airflow server (if it overwrites .cfg file then you may have to rewrite it again)
 airflow standalone
 
-### 5. Create connection settings
+### 4. Create connection settings
 Open http://localhost:8080 on Google Chrome, then go to "Admin > Connections" menu. From there, create the following connections:
     AWS credentials:
         Conn Id: aws_credentials
@@ -47,7 +45,7 @@ Open http://localhost:8080 on Google Chrome, then go to "Admin > Connections" me
         Password: Password for user when launching your Redshift cluster.
         Port: 5439
 
-### 6. Create connection settings
+### 5. Create connection settings
 Open http://localhost:8080 on Google Chrome, then go to "Admin > Connections" menu. From there, create the following connections:
 
     AWS credentials:
