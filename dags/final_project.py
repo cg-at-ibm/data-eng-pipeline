@@ -5,7 +5,7 @@ import pendulum
 from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.postgres_operator import PostgresOperator
-from plugins.operators import CreateTablesOperator, StageToRedshiftOperator, LoadFactOperator, LoadDimensionOperator, DataQualityOperator
+from operators import CreateTablesOperator, StageToRedshiftOperator, LoadFactOperator, LoadDimensionOperator, DataQualityOperator
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 
 s3_bucket = 'udacity-dend'
