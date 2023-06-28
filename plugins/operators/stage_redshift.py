@@ -1,10 +1,8 @@
 from airflow.contrib.hooks.aws_hook import AwsHook
-from airflow.secrets.metastore import MetastoreBackend
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 from helpers import SqlQueries
-from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 
 
 class StageToRedshiftOperator(BaseOperator):
@@ -40,14 +38,10 @@ class StageToRedshiftOperator(BaseOperator):
 
     def execute(self, context):
         self.log.info("Retrieving AWS credentials.")
-        #aws_hook = AwsHook(self.aws_credentials_id)
-        #credentials = aws_hook.get_credentials()    <-- Didn't work 
-        #s3cred = S3Hook(aws_conn_id=self.aws_credentials_id, verify=False)
-        #credentials = s3cred.get_credentials()
-        metastoreBackend = MetastoreBackend()
-        aws_connection=metastoreBackend.get_connection("aws_credentials")
-        access_key = aws_connection.login
-        secret_key = aws_connection.password
+        aws_hook = AwsHook(self.aws_credentials_id)
+        credentials = aws_hook.get_credentials()   
+        access_key = credentials.access_key
+        secret_key = credentials.secret_key
 
 
         redshift_hook = PostgresHook(postgres_conn_id=self.redshift_conn_id)
