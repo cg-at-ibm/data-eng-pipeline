@@ -51,7 +51,7 @@ Open http://localhost:8080 on Google Chrome, then go to "Admin > Connections" me
 ### 5. Run data_pipeline dag
 Run data_pipeline dag in airflow
 
-### File structure
+## File structure
 
 ```plaintext
 .                   # Home directory. Also set PYTHONPATH to this directory so plugins can load properly and don't appear broken.
