@@ -12,7 +12,6 @@ This repository contains an airflow workspace that is used to execute a data pip
 │   ├── helpers     # SQL queries used by operators for interacting with RedShift
 │   └── operators   # Operators used for DAG pipeline
 └── README.md
-```plaintext
 
 Notes for testing the code:
 To replicate the settings/installation used by the project:
