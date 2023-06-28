@@ -3,7 +3,7 @@ from airflow.secrets.metastore import MetastoreBackend
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
-from plugins.helpers import SqlQueries
+from helpers import SqlQueries
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 
 
