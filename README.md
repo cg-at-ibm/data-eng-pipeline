@@ -60,4 +60,5 @@ Run data_pipeline dag in airflow
 ├── plugins         # Plugin directory
 │   ├── helpers     # SQL queries used by operators for interacting with RedShift
 │   └── operators   # Operators used for DAG pipeline
-└── README.md
+└── README.md      
+└── create_tables.sql  # SQL query for creating tables neccesary for this project
