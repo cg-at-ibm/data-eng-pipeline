@@ -20,8 +20,8 @@ pip install apache-airflow-providers-postgres
 
 ### 2. Modify the airflow/airflow.cfg file
 load_examples = False
-dags_folder = /workspaces/<home>/dags
-plugins_folder = /workspaces/<home>/plugins
+dags_folder = <some path>/<home>/dags
+plugins_folder = <some path>/<home>/plugins
 lazy_load_plugins = False
 
 ### 3. Set pythonpath to home (IMPORTANT, PLUGINS MAY NOT LOAD WITHOUT THIS)
